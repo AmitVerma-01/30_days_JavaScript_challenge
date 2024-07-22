@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 10 Event Handling | 30 days JS Challenge</title>
+</head>
+<body style="background-color: bisque;">
+    <p id="para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi commodi sequi corrupti inventore sunt, maiores pariatur cumque illum officia voluptates.</p>
+    <p>Click the below button to change the paragraph content</p>
+    <button id="paraChangeButton" style="display: block;">Click me</button>
+<br>
+    <img src="day_10_tasks.png" alt="Tasks" height="400px" id="imageToToggle">
+    <span>Double click on the image to toggle its visibility</span>
+
+
+    <h3 style="border: 2px solid; height: 40px; background-color: aqua;" id="bgChangeElement">Hover on me to see the magic</h3>
+    
+    <input type="text" id="inputForKeydownEvent" readonly >
+    <span>Press any key. The value of the key you pressed will be displayed above the input field.</span>
+
+
+    <p id="paraInserted"></p>
+    <input type="text" placeholder="Type Something...." id="typeToPara">
+
+
+<br>
+
+<br>
+    <form action="submit" style="margin: 10px;" id="form">
+        
+        <label for="name">Name: </label>
+        <input type="text" id="name" placeholder="Enter Name">
+        <br>
+        <label for="email">Email: </label>
+        <input type="email" id="email" placeholder="Enter Email"><br>
+        <label for="password">Password: </label>
+        <input type="password" id="password" placeholder="Enter Password"><br>
+        <label for="address">Address: </label>
+        <input type="text" id="address" placeholder="Enter Address"> <br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <p id="dropDownContent"></p>
+    <select name="dropDown" id="dropDown">
+        <option value="ReactJs">ReactJs</option>
+        <option value="NodeJs">NodeJs</option>
+        <option value="ExpressJs">ExpressJs</option>
+        <option value="MongoDB">MongoDB</option>
+        <option value="HonoJs">HonoJs</option>
+    </select>
+
+
+    <ul id="list">
+        <li value="ReactJs">ReactJs</li>
+        <li value="NodeJs">NodeJs</li>
+        <li value="ExpressJs">ExpressJs</li>
+        <li value="MongoDB">MongoDB</li>
+        <li value="HonoJs">HonoJs</li>
+    </ul>
+    <ol id="ol">
+
+    </ol>
+    <button id="addItem">Add Item</button>
+    <script src="index.js"></script>
+</body>
+</html>
