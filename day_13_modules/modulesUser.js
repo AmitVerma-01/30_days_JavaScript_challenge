@@ -1,7 +1,7 @@
 const { greet, subtraction } = require('./Activity_02.js');
 const {addNumber , person} = require('./Activity_01.js');
 const { college, course, generateRandomNumber, name, sayHello } =  require('./Activity_03.js');
-// import isAdult  from './Task_4.mjs'
+import isAdult  from './Task_4.js'
 
 // task 1
 console.log("-------------------------------From task 1------------------------------------");
@@ -37,7 +37,7 @@ console.log( `${a} - ${b} = ${res}`);
 
 console.log("-------------------------------From task 4------------------------------------");
 
-// isAdult(40)
+isAdult(40)
 
 
 console.log("-------------------------------From task 5------------------------------------");
