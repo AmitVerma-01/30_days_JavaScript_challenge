@@ -17,4 +17,4 @@ for(let key in book){
 // solution
 
 console.log("keys",Object.keys(book));
-console.log("keys",Object.values(book));
+console.log("values",Object.values(book));
