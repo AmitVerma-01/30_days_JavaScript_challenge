@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body >
+    <div class="info-bar">
+      <p class="title">Weather App</p>
+      <p class="location text-shadow">Location</p>
+      <div class="date-container">
+        <span class="day text-shadow"></span>
+        <span class="date text-shadow"></span>
+      </div>
+      <p class="time text-shadow">Time</p>
+      <div class="cityInput">
+        <input type="text" id="cityInput" placeholder="Enter city name" />
+        <button class="text-shadow" onclick="handleClick()">Get Weather</button>
+      </div>
+    </div>
+    <div class="container">
+      <div class="weather">
+        <div class="left">
+          <h2 class="main-weather text-shadow">Main</h2>
+          <h3 class="main-weather-desc text-shadow">Main Description</h3>
+        </div>
+        <div class="right">
+          <p class="temp text-shadow">Temp</p>
+        </div>
+      </div>
+
+      <div class="weather-details">
+        <div class="data-item">
+          <p class="data-heading">Feels like</p>
+          <p class="data-value temp-feels">feels like</p>
+        </div>
+        <div class="data-item">
+          <p class="data-heading">Max</p>
+          <p class="data-value temp-max">max</p>
+        </div>
+        <div class="data-item">
+          <p class="data-heading">Min</p>
+          <p class="data-value temp-min">min</p>
+        </div>
+        <div class="data-item">
+          <p class="data-heading">Humidity</p>
+          <p class="data-value humidity">humidity</p>
+        </div>
+        <div class="data-item">
+          <p class="data-heading">Wind</p>
+          <p class="data-value wind">wind</p>
+        </div>
+        <div class="data-item">
+          <p class="data-heading">Pressure</p>
+          <p class="data-value pressure">pressure</p>
+        </div>
+        <div class="data-item">
+          <p class="data-heading">Sea level</p>
+          <p class="data-value sea-level">sea level</p>
+        </div>
+      </div>
+      <div class="forecast-container" id="forecast-container"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
