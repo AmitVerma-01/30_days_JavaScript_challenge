@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat App | Amit Verma</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar">
+        <h1>Chat App</h1>
+        <span class="username"></span>
+        <button class="btn" onclick="handleChangeName()">Change name</button>
+      </div>
+      <div class="chat-window">
+        <div class="messages-container">
+          <ul id="messages"></ul>
+        </div>
+        <div class="input">
+          <form id="messageForm">
+            <input type="text" id="messageInput" placeholder="Enter message" />
+            <button class="btn" onclick="sendMessage()">Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script>
+      let username = "";
+      const setUsername = () => {
+        if (!username) {
+          username = prompt("Enter your username");
+        }
+
+        document.querySelectorAll(".username").forEach((userEl) => {
+          userEl.textContent = username;
+        });
+      };
+
+      setUsername();
+
+      const handleChangeName = () => {
+        username = prompt("Enter your username");
+        localStorage.setItem("username", username);
+        document.querySelector(".username").textContent = username;
+      };
+
+      const messages = document.getElementById("messages");
+      const messageForm = document.getElementById("messageForm");
+
+      const ws = new WebSocket("ws://localhost:8080");
+
+      ws.onopen = () => {
+        console.log("Connected to WebSocket server");
+      };
+
+      ws.onmessage = (event) => {
+        try {
+          const { type, message, username } = JSON.parse(event.data);
+          console.log(event.data);
+          if (type === "message") {
+            displayReceivedMessage(message, username);
+          }
+        } catch (error) {
+          console.error("Error parsing message:", error);
+        }
+      };
+
+      ws.onclose = () => {
+        console.log("Disconnected from WebSocket server");
+      };
+
+      ws.onerror = (error) => {
+        console.error("WebSocket error:", error);
+      };
+
+      messageForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        sendMessage();
+      });
+
+      function sendMessage() {
+        if (!username) {
+          username = prompt("Please enter a username");
+          setUsername();
+        }
+        const input = document.getElementById("messageInput");
+        const message = input.value;
+
+        if (message) {
+          displaySentMessage(message, username);
+          ws.send(JSON.stringify({ type: "message", message, username }));
+          input.value = "";
+          console.log(`Sent: ${message}`);
+        }
+      }
+
+      function displaySentMessage(message, username) {
+        const messageItem = document.createElement("li");
+        messageItem.classList.add("align-right");
+        const textMessage = document.createElement("p");
+        textMessage.textContent = message;
+        const usernameEl = document.createElement("span");
+        usernameEl.classList.add("username", "message-username-right");
+        usernameEl.textContent = username;
+
+        messageItem.appendChild(textMessage);
+        messageItem.appendChild(usernameEl);
+        messages.appendChild(messageItem);
+
+        scrollToBottom();
+      }
+
+      function displayReceivedMessage(message, username) {
+        console.log("Received:", message);
+        const messageItem = document.createElement("li");
+        messageItem.classList.add("align-left");
+        const textMessage = document.createElement("p");
+        textMessage.textContent = message;
+        const usernameEl = document.createElement("span");
+        usernameEl.classList.add("username", "message-username-left");
+        usernameEl.textContent = username;
+
+        messageItem.appendChild(textMessage);
+        messageItem.appendChild(usernameEl);
+        messages.appendChild(messageItem);
+
+        scrollToBottom();
+      }
+
+      function scrollToBottom() {
+        messages.scrollTop = messages.scrollHeight;
+      }
+    </script>
+  </body>
+</html>
